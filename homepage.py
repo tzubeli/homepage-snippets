@@ -1,3 +1,22 @@
+#
+# Generate Session
+#
+
+secret = "a1b2c3d4e5f6g7h8i9j0"
+userId = "vpaas@kaltura.com"
+type = KalturaSessionType.ADMIN
+partnerId = 9876543
+expiry = 86400
+privileges = ""
+
+result = client.session.start(secret, userId, type, partnerId, expiry, privileges);
+print(result);
+
+
+#
+# Ingestion
+#
+
 entry = KalturaMediaEntry()
 entry.mediaType = KalturaMediaType.IMAGE
 entry.name = "Cat"

@@ -1,3 +1,20 @@
+#
+# Generate Session
+#
+
+secret = "a1b2c3d4e5f6g7h8i9j0"
+user_id = "vpaas@kaltura.com"
+type = KalturaSessionType::ADMIN
+partner_id = 9876543
+expiry = 86400
+privileges = ""
+
+results = client.session_service.start(secret, user_id, type, partner_id, expiry, privileges)
+puts results.inspect
+#
+# Ingestion
+#
+
 entry = KalturaMediaEntry.new()
 entry.media_type = KalturaMediaType::IMAGE
 entry.name = "Cat"
@@ -5,9 +22,8 @@ entry.name = "Cat"
 results = client.media_service.add(entry)
 puts results.inspect
 
-String entryId = "1_09d6if4y";
-KalturaUrlResource resource = new KalturaUrlResource();
-resource.url = "https://orig00.deviantart.net/f3c7/f/2016/008/7/c/a_kitty_cat_7_by_killermiaw-d9n6j90.jpg";
+entry_id = results.id
+resource = KalturaUrlResource.new()
 
-Object result = client.getMediaService().addContent(entryId, resource);
-System.out.println(result);
+results = client.media_service.add_content(entry_id, resource)
+puts results.inspect

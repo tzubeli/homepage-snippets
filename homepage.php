@@ -1,19 +1,18 @@
 <?php
 
-require_once('../KalturaPHP5/KalturaClient.php');
+/* 
+ * Generate Session 
+ */ 
 
-$config = new KalturaConfiguration(2365491);
-$client = new KalturaClient($config);
-$ks = $client->session->start(
-"afc50d0a340f5f543d2c349ab0e8c56d",
-"avital.tzubeli@kaltura.com",
-KalturaSessionType::ADMIN,
-2365491, 
-86400, 
-"disableentitlement");
-$client->setKS($ks); 
+$secret = "a1b2c3d4e5f6g7h8i9j0";
+$userId = "vpaas@kaltura.com";
+$type = KalturaSessionType::ADMIN;
+$partnerId = 9876543;
+$expiry = 86400;
+$privileges = "";
 
-
+$result = $client->session->start($secret, $userId, $type, $partnerId, $expiry, $privileges);
+var_dump($result);
 
 /* 
  * Ingestion 
@@ -30,10 +29,7 @@ $resource = new KalturaUrlResource();
 $resource->url = "https://orig00.deviantart.net/f3c7/f/2016/008/7/c/a_kitty_cat_7_by_killermiaw-d9n6j90.jpg";
 
 $result = $client->media->addContent($entryId, $resource);
-
-/* 
- * Generate Session 
- */ 
+var_dump($result);
 
 
 
