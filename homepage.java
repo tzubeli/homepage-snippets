@@ -3,9 +3,9 @@
 */
 
 String secret = "a1b2c3d4e5f6g7h8i9j0";
-String userId = "vpaas@kaltura.com";
+String userId = "you@email.com";
 KalturaSessionType type = KalturaSessionType.ADMIN;
-int partnerId = 9876543;
+int partnerId = 0000000;
 int expiry = 86400;
 String privileges = "";
 
@@ -36,8 +36,8 @@ System.out.println(result);
 
 
 User user = new User();
-user.setEmail("amanda.harris@gmail.com");
-user.setId("amandaharris");
+user.setEmail("you@email.com");
+user.setId("username");
 
 AddUserBuilder requestBuilder = UserService.add(user); 
 
@@ -61,7 +61,7 @@ SearchEntryESearchBuilder requestBuilder = ESearchService.searchentry(searchPara
 
 String entryId = 'xyz_123'; 
 KalturaUrlResource resource = new KalturaUrlResource();
-resource.url = "https://orig00.deviantart.net/f3c7/f/2016/008/7/c/a_kitty_cat_7_by_killermiaw-d9n6j90.jpg";
+resource.url = "https://example.com/catThumbnail.jpeg";
 
 ThumbAsset thumbAsset = new KalturaThumbAsset();
 Object result = client.thumbAsset.add(entry_id, thumbAsset); 

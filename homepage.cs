@@ -3,9 +3,9 @@
 */
 
   string secret = "a1b2c3d4e5f6g7h8i9j0";
-  string userId = "vpaas@kaltura.com";
+  string userId = "you@email.com";
   SessionType type = SessionType.ADMIN;
-  int partnerId = 9876543;
+  int partnerId = 0000000;
   int expiry = 86400;
   string privileges = "";
 
@@ -57,7 +57,7 @@
 
   string entryId = "xyz_123";
   UrlResource contentResource = new UrlResource();
-  contentResource.Url = "https://orig00.deviantart.net/f3c7/f/2016/008/7/c/a_kitty_cat_7_by_killermiaw-d9n6j90.jpg";
+  contentResource.Url = "https://example.com/catThumbnail.jpeg";
   ThumbAsset thumbAsset = new ThumbAsset();
 
   OnCompletedHandler<ThumbAsset> handler = new OnCompletedHandler<ThumbAsset>(
@@ -86,8 +86,8 @@
 */
 
   User user = new User();
-  user.Email = "amanda.harris@gmail.com";
-  user.Id = "amandaharris";
+  user.Email = "you@email.com";
+  user.Id = "username";
 
   OnCompletedHandler<User> handler = new OnCompletedHandler<User>(
     (User result, Exception e) =>

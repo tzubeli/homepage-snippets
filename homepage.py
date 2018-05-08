@@ -3,9 +3,9 @@
 #
 
 secret = "a1b2c3d4e5f6g7h8i9j0"
-userId = "vpaas@kaltura.com"
+userId = "you@email.com"
 type = KalturaSessionType.ADMIN
-partnerId = 9876543
+partnerId = 0000000
 expiry = 86400
 privileges = ""
 
@@ -33,8 +33,8 @@ result = client.media.addContent(entryId, resource);
 #
 
 user = KalturaUser()
-user.email = "amanda.harris@gmail.com"
-user.id = "amandaharris"
+user.email = "you@email.com"
+user.id = "username"
 
 result = client.user.add(user);
 print(result);
@@ -62,7 +62,7 @@ print(result);
 
 entry_id = 'xyz_123'
 resource = KalturaUrlResource()
-resource.url = "https://orig00.deviantart.net/f3c7/f/2016/008/7/c/a_kitty_cat_7_by_killermiaw-d9n6j90.jpg"
+resource.url = "https://example.com/catThumbnail.jpeg"
 
 thumbAsset = new KalturaThumbAsset()
 

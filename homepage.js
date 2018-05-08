@@ -4,9 +4,9 @@
  */
 
 let secret = "a1b2c3d4e5f6g7h8i9j0";
-let userId = "vpaas@kaltura.com";
+let userId = "you@email.com";
 let type = kaltura.enums.SessionType.ADMIN;
-let partnerId = 9876543;
+let partnerId = 00000;
 let expiry = 86400;
 let privileges = "";
 
@@ -49,7 +49,7 @@ kaltura.services.media.add(entry)
 
 let entryId = 'xyz_123'
 let resource = new kaltura.objects.UrlResource();
-resource.url = "https://orig00.deviantart.net/f3c7/f/2016/008/7/c/a_kitty_cat_7_by_killermiaw-d9n6j90.jpg";
+resource.url = "https://example.com/catThumbnail.jpeg";
 
 let thumbAsset = new kaltura.objects.ThumbAsset();
 
@@ -66,8 +66,8 @@ kaltura.services.thumbAsset.add(entryId, thumbAsset)
 
 
 let user = new kaltura.objects.User();
-user.email = "amanda.harris@gmail.com";
-user.id = "amandaharris";
+user.email = "you@email.com";
+user.id = "username";
 
 kaltura.services.user.add(user)
 .execute(client)

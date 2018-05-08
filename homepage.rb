@@ -3,9 +3,9 @@
 #
 
 secret = "a1b2c3d4e5f6g7h8i9j0"
-user_id = "vpaas@kaltura.com"
+user_id = "you@email.com"
 type = KalturaSessionType::ADMIN
-partner_id = 9876543
+partner_id = 0000000
 expiry = 86400
 privileges = ""
 
@@ -35,8 +35,8 @@ puts results.inspect
 #
 
 user = KalturaUser.new()
-user.email = "amanda.harris@gmail.com"
-user.id = "amandaharris"
+user.email = "you@email.com"
+user.id = "username"
 
 results = client.user_service.add(user)
 puts results.inspect
@@ -61,7 +61,7 @@ puts results.inspect
 #
 entry_id = "xyz_123"
 resource = KalturaUrlResource.new()
-resource.url = "https://orig00.deviantart.net/f3c7/f/2016/008/7/c/a_kitty_cat_7_by_killermiaw-d9n6j90.jpg"
+resource.url = "https://example.com/catThumbnail.jpeg"
 
 thumbAsset = KalturaThumbAsset.new()
 result = client.thumb_asset_service.add(entry_id, thumbAsset)
