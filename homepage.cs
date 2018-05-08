@@ -2,52 +2,122 @@
   Generate Session 
 */
 
-string secret = "a1b2c3d4e5f6g7h8i9j0";
-string userId = "vpaas@kaltura.com";
-SessionType type = SessionType.ADMIN;
-int partnerId = 9876543;
-int expiry = 86400;
-string privileges = "";
+  string secret = "a1b2c3d4e5f6g7h8i9j0";
+  string userId = "vpaas@kaltura.com";
+  SessionType type = SessionType.ADMIN;
+  int partnerId = 9876543;
+  int expiry = 86400;
+  string privileges = "";
 
-OnCompletedHandler<string> handler = new OnCompletedHandler<string>(
-      (string result, Exception e) =>
-      {
-        CodeExample.PrintObject(result);
-        done = true;
+  OnCompletedHandler<string> handler = new OnCompletedHandler<string>(
+    (string result, Exception e) =>
+    {
+      CodeExample.PrintObject(result);
+      done = true;
       });
-SessionService.Start(secret, userId, type, partnerId, expiry, privileges)
-   .SetCompletion(handler)
-   .Execute(client);
-   
+
+  SessionService.Start(secret, userId, type, partnerId, expiry, privileges)
+  .SetCompletion(handler)
+  .Execute(client);
+
 /*
   Ingestion 
 */
 
-MediaEntry entry = new MediaEntry();
-entry.MediaType = MediaType.IMAGE;
-entry.Name = "Cat";
+  MediaEntry entry = new MediaEntry();
+  entry.MediaType = MediaType.VIDEO;
+  entry.Name = "Cat";
 
-OnCompletedHandler<MediaEntry> handler = new OnCompletedHandler<MediaEntry>(
-      (MediaEntry result, Exception e) =>
-      {
-        CodeExample.PrintObject(result);
-        done = true;
+  OnCompletedHandler<MediaEntry> handler = new OnCompletedHandler<MediaEntry>(
+    (MediaEntry result, Exception e) =>
+    {
+      String entryId = result.id;
+      KalturaUrlResource resource = new KalturaUrlResource();
+      resource.url = "https://example.com/catVideo.mp4";
+
+      OnCompletedHandler<MediaEntry> handler = new OnCompletedHandler<MediaEntry>(
+        (MediaEntry result, Exception e) =>
+        {
+          CodeExample.PrintObject(result);
+          done = true;
+          });
+      MediaService.AddContent(entryId, resource)
+      .SetCompletion(handler)
+      .Execute(client);
+      done = true;
       });
-MediaService.Add(entry)
-   .SetCompletion(handler)
-   .Execute(client);
+  MediaService.Add(entry)
+  .SetCompletion(handler)
+  .Execute(client);
 
 
-String entryId = ;//todo 
-KalturaUrlResource resource = new KalturaUrlResource();
-resource.url = "https://orig00.deviantart.net/f3c7/f/2016/008/7/c/a_kitty_cat_7_by_killermiaw-d9n6j90.jpg";
+/*
+  Thumb Asset  
+*/
 
-OnCompletedHandler<MediaEntry> handler = new OnCompletedHandler<MediaEntry>(
-      (MediaEntry result, Exception e) =>
-      {
-        CodeExample.PrintObject(result);
-        done = true;
+  string entryId = "xyz_123";
+  UrlResource contentResource = new UrlResource();
+  contentResource.Url = "https://orig00.deviantart.net/f3c7/f/2016/008/7/c/a_kitty_cat_7_by_killermiaw-d9n6j90.jpg";
+  ThumbAsset thumbAsset = new ThumbAsset();
+
+  OnCompletedHandler<ThumbAsset> handler = new OnCompletedHandler<ThumbAsset>(
+    (ThumbAsset result, Exception e) =>
+    {
+      OnCompletedHandler<ThumbAsset> handler = new OnCompletedHandler<ThumbAsset>(
+        (ThumbAsset result, Exception e) =>
+        {
+          CodeExample.PrintObject(result);
+          done = true;
+          });
+      ThumbAssetService.SetContent(result.id, contentResource)
+      .SetCompletion(handler)
+      .Execute(client);
+
+      CodeExample.PrintObject(result);
+      done = true;
       });
-MediaService.AddContent(entryId, resource)
-   .SetCompletion(handler)
-   .Execute(client);
+  ThumbAssetService.Add(entryId, thumbAsset)
+  .SetCompletion(handler)
+  .Execute(client);
+
+
+/*
+  User 
+*/
+
+  User user = new User();
+  user.Email = "amanda.harris@gmail.com";
+  user.Id = "amandaharris";
+
+  OnCompletedHandler<User> handler = new OnCompletedHandler<User>(
+    (User result, Exception e) =>
+    {
+      CodeExample.PrintObject(result);
+      done = true;
+      });
+  UserService.Add(user)
+  .SetCompletion(handler)
+  .Execute(client);
+
+
+/*
+  Search 
+*/
+
+  ESearchEntryParams searchParams = new ESearchEntryParams();
+  searchParams.SearchOperator = new ESearchEntryOperator();
+  searchParams.SearchOperator.Operator = ESearchOperatorType.AND_OP;
+  searchParams.SearchOperator.SearchItems = new List<ESearchEntryBaseItem>();
+  searchParams.SearchOperator.SearchItems.Add(new ESearchUnifiedItem());
+  searchParams.SearchOperator.SearchItems[0].ItemType = ESearchItemType.PARTIAL;
+  searchParams.SearchOperator.SearchItems[0].SearchTerm = "cat";
+
+  OnCompletedHandler<ESearchResponse> handler = new OnCompletedHandler<ESearchResponse>(
+    (ESearchResponse result, Exception e) =>
+    {
+      CodeExample.PrintObject(result);
+      done = true;
+      });
+  ESearchService.SearchEntry(searchParams)
+  .SetCompletion(handler)
+  .Execute(client);

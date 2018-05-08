@@ -26,10 +26,46 @@ $entryResult = $client->media->add($entry);
 
 $entryId = $entryResult->id;
 $resource = new KalturaUrlResource();
-$resource->url = "https://orig00.deviantart.net/f3c7/f/2016/008/7/c/a_kitty_cat_7_by_killermiaw-d9n6j90.jpg";
+$resource->url = "https://example.com/catVideo.mp4";
 
 $result = $client->media->addContent($entryId, $resource);
 var_dump($result);
 
 
+/* 
+ * Search 
+ */ 
 
+$elasticSearchPlugin = KalturaElasticSearchClientPlugin::get($client);
+$searchParams = new KalturaESearchEntryParams();
+$searchParams->searchOperator = new KalturaESearchEntryOperator();
+$searchParams->searchOperator->searchItems = [];
+$searchParams->searchOperator->searchItems[0] = new KalturaESearchUnifiedItem();
+$searchParams->searchOperator->searchItems[0]->itemType = KalturaESearchItemType::PARTIAL;
+$searchParams->searchOperator->searchItems[0]->searchTerm = "cat";
+
+$result = $elasticSearchPlugin->eSearch->searchEntry($searchParams);
+
+/* 
+ * Thumb asset 
+ */ 
+
+$entry_id = 'xyz_123'
+$resource = new KalturaUrlResource();
+$resource->url = "https://orig00.deviantart.net/f3c7/f/2016/008/7/c/a_kitty_cat_7_by_killermiaw-d9n6j90.jpg";
+
+$thumbAsset = new KalturaThumbAsset();
+$result = $client->thumbAsset->add($entry_id, $thumbAsset);
+
+$client->thumbAsset->setContent($result->id, $resource);
+
+
+/* 
+ * user
+ */ 
+
+$user = new KalturaUser();
+$user->email = "amanda.harris@gmail.com";
+$user->id = "amandaharris";
+
+$result = $client->user->add($user);
