@@ -16,6 +16,10 @@ System.out.println(result);
  Ingestion
 */
 
+Configuration config = new Configuration();
+Client client = new Client(config);
+client.setSessionId(session);
+
 KalturaMediaEntry entry = new KalturaMediaEntry();
 entry.mediaType = KalturaMediaType.VIDEO;
 entry.name = "Cat";
@@ -34,6 +38,9 @@ System.out.println(result);
  User
 */
 
+Configuration config = new Configuration();
+Client client = new Client(config);
+client.setSessionId(session);
 
 User user = new User();
 user.setEmail("you@email.com");
@@ -44,6 +51,9 @@ AddUserBuilder requestBuilder = UserService.add(user);
 /*
  Search
 */
+Configuration config = new Configuration();
+Client client = new Client(config);
+client.setSessionId(session);
 
 ESearchEntryParams searchParams = new ESearchEntryParams();
 searchParams.setSearchOperator(new ESearchEntryOperator());
@@ -58,6 +68,10 @@ SearchEntryESearchBuilder requestBuilder = ESearchService.searchentry(searchPara
 /*
  Thumb Asset
 */
+
+Configuration config = new Configuration();
+Client client = new Client(config);
+client.setSessionId(session);
 
 String entryId = 'xyz_123'; 
 KalturaUrlResource resource = new KalturaUrlResource();

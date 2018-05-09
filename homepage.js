@@ -3,6 +3,10 @@
  * Generate Session 
  */
 
+const config = new kaltura.Configuration();
+const client = new kaltura.Client(config);
+client.setKs(ks);
+
 let secret = "a1b2c3d4e5f6g7h8i9j0";
 let userId = "you@email.com";
 let type = kaltura.enums.SessionType.ADMIN;
@@ -20,6 +24,10 @@ kaltura.services.session.start(secret, userId, type, partnerId, expiry, privileg
 /* 
  * Ingestion 
  */
+
+const config = new kaltura.Configuration();
+const client = new kaltura.Client(config);
+client.setKs(ks);
 
 let entry = new kaltura.objects.MediaEntry();
 entry.mediaType = kaltura.enums.MediaType.VIDEO;
@@ -46,6 +54,9 @@ kaltura.services.media.add(entry)
  * Thumb Asset 
  */
 
+const config = new kaltura.Configuration();
+const client = new kaltura.Client(config);
+client.setKs(ks);
 
 let entryId = 'xyz_123'
 let resource = new kaltura.objects.UrlResource();
@@ -64,6 +75,9 @@ kaltura.services.thumbAsset.add(entryId, thumbAsset)
  * User 
  */
 
+const config = new kaltura.Configuration();
+const client = new kaltura.Client(config);
+client.setKs(ks);
 
 let user = new kaltura.objects.User();
 user.email = "you@email.com";
@@ -80,6 +94,9 @@ kaltura.services.user.add(user)
  * Search 
  */
 
+const config = new kaltura.Configuration();
+const client = new kaltura.Client(config);
+client.setKs(ks);
 
 let searchParams = new kaltura.objects.ESearchEntryParams();
 searchParams.searchOperator = new kaltura.objects.ESearchEntryOperator();
