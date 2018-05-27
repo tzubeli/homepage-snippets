@@ -2,24 +2,17 @@
 Generate Session 
 */
 
-
-Configuration config = new Configuration();
-Client client = new Client(config);
-client.KS = client.GenerateSession(partnerId, secret, userId, type, expiry, privileges);
-
 string secret = "a1b2c3d4e5f6g7h8i9j0";
 string userId = "you@email.com";
 SessionType type = SessionType.ADMIN;
-int partnerId = 0000000;
+int partnerId = 0000000;.
 int expiry = 86400;
 string privileges = "";
 
 OnCompletedHandler<string> handler = new OnCompletedHandler<string>(
   (string result, Exception e) =>
   {
-    CodeExample.PrintObject(result);
-    done = true;
-    });
+    done = true; });
 
 SessionService.Start(secret, userId, type, partnerId, expiry, privileges)
 .SetCompletion(handler)
@@ -29,9 +22,6 @@ SessionService.Start(secret, userId, type, partnerId, expiry, privileges)
 Ingestion 
 */
 
-Configuration config = new Configuration();
-Client client = new Client(config);
-client.KS = client.GenerateSession(partnerId, secret, userId, type, expiry, privileges);
 
 MediaEntry entry = new MediaEntry();
 entry.MediaType = MediaType.VIDEO;
@@ -42,19 +32,16 @@ OnCompletedHandler<MediaEntry> handler = new OnCompletedHandler<MediaEntry>(
   {
     String entryId = result.id;
     KalturaUrlResource resource = new KalturaUrlResource();
-    resource.url = "https://example.com/catVideo.mp4";
+    resource.url = "https://example.com/catVideo.mp4" ;
 
     OnCompletedHandler<MediaEntry> handler = new OnCompletedHandler<MediaEntry>(
       (MediaEntry result, Exception e) =>
       {
-        CodeExample.PrintObject(result);
-        done = true;
-        });
+        done = true; });
     MediaService.AddContent(entryId, resource)
     .SetCompletion(handler)
     .Execute(client);
-    done = true;
-    });
+    done = true;  });
 MediaService.Add(entry)
 .SetCompletion(handler)
 .Execute(client);
@@ -64,10 +51,6 @@ MediaService.Add(entry)
 Thumb Asset  
 */
 
-
-Configuration config = new Configuration();
-Client client = new Client(config);
-client.KS = client.GenerateSession(partnerId, secret, userId, type, expiry, privileges);
 
 string entryId = "xyz_123";
 UrlResource contentResource = new UrlResource();
@@ -80,16 +63,12 @@ OnCompletedHandler<ThumbAsset> handler = new OnCompletedHandler<ThumbAsset>(
   OnCompletedHandler<ThumbAsset> handler = new OnCompletedHandler<ThumbAsset>(
     (ThumbAsset result, Exception e) =>
     {
-      CodeExample.PrintObject(result);
-      done = true;
-      });
+      done = true; });
   ThumbAssetService.SetContent(result.id, contentResource)
   .SetCompletion(handler)
   .Execute(client);
 
-  CodeExample.PrintObject(result);
-  done = true;
-  });
+  done = true; });
 ThumbAssetService.Add(entryId, thumbAsset)
 .SetCompletion(handler)
 .Execute(client);
@@ -99,9 +78,6 @@ ThumbAssetService.Add(entryId, thumbAsset)
 User 
 */
 
-Configuration config = new Configuration();
-Client client = new Client(config);
-client.KS = client.GenerateSession(partnerId, secret, userId, type, expiry, privileges);
 
 User user = new User();
 user.Email = "you@email.com";
@@ -110,9 +86,7 @@ user.Id = "username";
 OnCompletedHandler<User> handler = new OnCompletedHandler<User>(
   (User result, Exception e) =>
   {
-    CodeExample.PrintObject(result);
-    done = true;
-    });
+    done = true; });
 UserService.Add(user)
 .SetCompletion(handler)
 .Execute(client);
@@ -122,10 +96,6 @@ UserService.Add(user)
 Search 
 */
 
-
-Configuration config = new Configuration();
-Client client = new Client(config);
-client.KS = client.GenerateSession(partnerId, secret, userId, type, expiry, privileges);
 
 ESearchEntryParams searchParams = new ESearchEntryParams();
 searchParams.SearchOperator = new ESearchEntryOperator();
@@ -138,9 +108,7 @@ searchParams.SearchOperator.SearchItems[0].SearchTerm = "cat";
 OnCompletedHandler<ESearchResponse> handler = new OnCompletedHandler<ESearchResponse>(
   (ESearchResponse result, Exception e) =>
   {
-    CodeExample.PrintObject(result);
-    done = true;
-    });
+    done = true; });
 ESearchService.SearchEntry(searchParams)
 .SetCompletion(handler)
 .Execute(client);

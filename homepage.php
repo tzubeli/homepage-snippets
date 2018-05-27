@@ -19,7 +19,7 @@ var_dump($result);
  */ 
 
 $entry = new KalturaMediaEntry();
-$entry->mediaType = KalturaMediaType::IMAGE;
+$entry->mediaType = KalturaMediaType::VIDEO;
 $entry->name = "Cat";
 
 $entryResult = $client->media->add($entry);

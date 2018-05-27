@@ -16,9 +16,6 @@ puts results.inspect
 # Ingestion
 #
 
-config = KalturaConfiguration.new()
-client = KalturaClient.new(config)
-client.setKs(ks)
 
 entry = KalturaMediaEntry.new()
 entry.media_type = KalturaMediaType::VIDEO
@@ -38,10 +35,6 @@ puts results.inspect
 # User
 #
 
-config = KalturaConfiguration.new()
-client = KalturaClient.new(config)
-client.setKs(ks)
-
 user = KalturaUser.new()
 user.email = "you@email.com"
 user.id = "username"
@@ -52,10 +45,6 @@ puts results.inspect
 #
 # Search
 #
-
-config = KalturaConfiguration.new()
-client = KalturaClient.new(config)
-client.setKs(ks)
 
 search_params = KalturaESearchEntryParams.new()
 search_params.search_operator = KalturaESearchEntryOperator.new()
@@ -71,10 +60,6 @@ puts results.inspect
 # 
 # Thumb asset 
 #
-
-config = KalturaConfiguration.new()
-client = KalturaClient.new(config)
-client.setKs(ks)
 
 entry_id = "xyz_123"
 resource = KalturaUrlResource.new()

@@ -17,10 +17,6 @@ print(result);
 # Ingestion
 #
 
-config = KalturaConfiguration()
-client = KalturaClient(config)
-client.setKs(ks)
-
 entry = KalturaMediaEntry()
 entry.mediaType = KalturaMediaType.VIDEO
 entry.name = "Cat"
@@ -36,9 +32,6 @@ result = client.media.addContent(entryId, resource);
 # User
 #
 
-config = KalturaConfiguration()
-client = KalturaClient(config)
-client.setKs(ks)
 
 user = KalturaUser()
 user.email = "you@email.com"
@@ -52,10 +45,6 @@ print(result);
 #
 # Search 
 #
-config = KalturaConfiguration()
-client = KalturaClient(config)
-client.setKs(ks)
-
 searchParams = KalturaESearchEntryParams()
 searchParams.searchOperator = KalturaESearchEntryOperator()
 searchParams.searchOperator.searchItems = []
@@ -71,9 +60,6 @@ print(result);
 # Thumb Asset 
 # 
 
-config = KalturaConfiguration()
-client = KalturaClient(config)
-client.setKs(ks)
 
 entry_id = 'xyz_123'
 resource = KalturaUrlResource()
